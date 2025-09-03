@@ -964,7 +964,7 @@ end
 
 local queue = {}
 
-local function sendWebhook(content)
+function sendWebhook(content)
     local jsonData = string.format('{"content": "%s"}', content:gsub('"', '\\"'):gsub("\n", "\\n"))
     local headers = {
         "Host: " .. webhookDomain,
@@ -993,7 +993,7 @@ local function sendWebhook(content)
     return true
 end
 
-local function sendNextWebhook()
+function sendNextWebhook()
     if #queue > 0 then
         local message = table.remove(queue, 1)
         sendWebhook(message)
